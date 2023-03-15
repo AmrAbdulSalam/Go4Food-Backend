@@ -72,11 +72,3 @@ app.listen(PORT , ()=>{
 })
 
 
-// {
-//     "firstname" : "amr",
-//     "lastname": "abdulsalam",
-//     "email" : "amrsalam@hotmail.com",
-//     "phoneNumber" : "+970595664422",
-//     "country" : "Palestine" ,
-//     "password" : "12345"
-// }

@@ -13,6 +13,7 @@ let userSchema = new Schema({
     },
     email : {
         type : String ,
+        unique : true,
         required : true
     },
     phoneNumber : {
@@ -27,10 +28,21 @@ let userSchema = new Schema({
         type : String ,
         required : true
     },
-    registerDate : Date
+    registerDate : {
+        type : Date ,
+        default : Date.now
+    }
 })
 
 const UserSchema = mongoose.model("userinformation" , userSchema)
 module.exports = UserSchema
 
 
+// {
+//     "firstname" : "amr",
+//     "lastname": "abdulsalam",
+//     "email" : "amrsalam@hotmail.com",
+//     "phoneNumber" : "+970595664422",
+//     "country" : "Palestine" ,
+//     "password" : "12345"
+// }
