@@ -28,7 +28,10 @@ let productSchema = new Schema({
             type : Number ,
             required : true
         } ,
-        newPrice : {type : Number} ,
+        newPrice : {
+            type : Number ,
+            required : true
+        }
         
     } ,
     timeToCollect : {
@@ -53,7 +56,10 @@ let productSchema = new Schema({
             type : String ,
             required : true
         },
-        title : {type : String} ,
+        picTitle : {
+            type : String ,
+            default : "no-name image"
+        } ,
     } , 
     dateOfAnnouncment : {
         type : Date ,

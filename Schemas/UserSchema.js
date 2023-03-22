@@ -36,13 +36,3 @@ let userSchema = new Schema({
 
 const UserSchema = mongoose.model("userinformation" , userSchema)
 module.exports = UserSchema
-
-
-// {
-//     "firstname" : "amr",
-//     "lastname": "abdulsalam",
-//     "email" : "amrsalam@hotmail.com",
-//     "phoneNumber" : "+970595664422",
-//     "country" : "Palestine" ,
-//     "password" : "12345"
-// }

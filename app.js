@@ -2,6 +2,7 @@ const express = require('express');
 const { default: mongoose, connect } = require('mongoose');
 let UserSchema = require('./Schemas/UserSchema')
 var bodyParser = require('body-parser');
+const prodcutRouter = require('./routers/ProdcutRouter')
 
 require("dotenv").config();
 const app = express()
@@ -66,7 +67,10 @@ app.post('/newUser' , (req , res) => {
     });
 });
 
-app.listen(PORT , ()=>{
+//Set new product
+app.use('/prodcut',prodcutRouter);
+
+app.listen(PORT , ()=> {
     console.log(`Welcome for the first time from port ${PORT}`)
     ConfigDB();
 })
