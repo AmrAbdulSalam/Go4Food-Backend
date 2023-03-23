@@ -3,6 +3,7 @@ const { default: mongoose, connect } = require('mongoose');
 let UserSchema = require('./Schemas/UserSchema')
 var bodyParser = require('body-parser');
 const prodcutRouter = require('./routers/ProdcutRouter')
+const UserController = require('./routers/UserRouter')
 
 require("dotenv").config();
 const app = express()
@@ -36,37 +37,10 @@ app.get('/testUser' , (req,res) =>{
 
 })
 
-app.get('/getAllUserInformation' , (req,res)=>{
-    UserSchema.find()
-    .then((result) =>{
-        res.send(result)
-    })
-    .catch(err =>{
-        console.log(err)
-    })
-})
 
-app.post('/newUser' , (req , res) => {
-    let userinformation = new UserSchema({
-        firstname:req.body.firstname ,
-        lastname:req.body.lastname,
-        email:req.body.email,
-        phoneNumber:req.body.phoneNumber,
-        country:req.body.country,
-        password:req.body.password,
 
-    });
-
-    userinformation.save()
-    .then((item) =>{
-        res.send("UserAdded to Database")
-        console.log(item)
-    })
-    .catch( err => {
-        console.log(err)
-    });
-});
-
+//Set New User
+app.use('/' , UserController)
 //Set new product
 app.use('/prodcut',prodcutRouter);
 
