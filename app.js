@@ -40,7 +40,7 @@ app.get('/testUser' , (req,res) =>{
 
 
 //Set New User
-app.use('/' , UserController)
+app.use('/user' , UserController)
 //Set new product
 app.use('/prodcut',prodcutRouter);
 

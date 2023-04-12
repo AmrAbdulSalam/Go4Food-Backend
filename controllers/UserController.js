@@ -84,12 +84,27 @@ let updateUser = (req,res) => {
     
 }
 
+let checkCredentials = (req , res) => {
+    let {email , password} = req.body;
+    UserSchema.findOne(
+        {
+            email : email
+        }
+    ).then(result => {
+        if(result.password == password) {
+            res.status(200).send("User Found")
+        }
+        else
+            res.status(404).send("Not found")
+    })
+}
 module.exports = {
     getAllUserInformation ,
     newUser ,
     searchForUserById ,
     searchForUserByEmail ,
     deleteUserById ,
-    updateUser
+    updateUser ,
+    checkCredentials
 
 }
