@@ -92,10 +92,19 @@ let checkCredentials = (req , res) => {
         }
     ).then(result => {
         if(result.password == password) {
-            res.status(200).send("User Found")
+            res.status(200).json(
+                {
+                    "message" : "user found" , 
+                    "id" : result._id
+                }
+            )
         }
         else
-            res.status(404).send("Not found")
+            res.status(404).json(
+                {
+                    "message" : "Not found"
+                }
+            )
     })
 }
 module.exports = {
