@@ -1,5 +1,6 @@
 let UserSchema = require('../Schemas/UserSchema')
-
+const jwt = require('jsonwebtoken')
+require("dotenv").config();
 
 let getAllUserInformation = (req , res) => {
     UserSchema.find()
@@ -24,11 +25,20 @@ let newUser = (req , res) => {
 
     userinformation.save()
     .then((item) =>{
-        res.send("UserAdded to Database")
-        console.log(item)
+        res.json(
+            {
+                "message" : "added"
+            }
+        )
+        //console.log(item)
     })
     .catch( err => {
-        console.log(err)
+        res.json(
+            {
+                "message" : "found"
+            }
+        )
+        // console.log(err)
     });
 }
 
@@ -90,21 +100,35 @@ let checkCredentials = (req , res) => {
         {
             email : email
         }
-    ).then(result => {
-        if(result.password == password) {
+    ).then(user => {
+        if(user.password == password) {
+            let newUser = {
+                'email' : user.email ,
+                'id' : user._id ,
+                'country' : user.country
+            }
+            let token = jwt.sign(newUser , process.env.SECRET_KEY , {expiresIn : "10s"})
             res.status(200).json(
                 {
                     "message" : "user found" , 
-                    "id" : result._id
+                    "token" : token
                 }
             )
         }
         else
             res.status(404).json(
                 {
-                    "message" : "Not found"
+                    "message" : "Wrong Password"
                 }
             )
+    })
+    .catch(err => {
+        res.json(
+            {
+                "message" : "Error while finding user"
+            }
+        )
+        console.log(err)
     })
 }
 module.exports = {

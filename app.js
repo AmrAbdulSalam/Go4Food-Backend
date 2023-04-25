@@ -4,7 +4,7 @@ let UserSchema = require('./Schemas/UserSchema')
 var bodyParser = require('body-parser');
 const prodcutRouter = require('./routers/ProdcutRouter')
 const UserController = require('./routers/UserRouter')
-
+const FavoriteRouter = require('./routers/FavoriteRouter')
 require("dotenv").config();
 const app = express()
 const PORT = 3333 
@@ -44,6 +44,8 @@ app.use('/user' , UserController)
 //Set new product
 app.use('/prodcut',prodcutRouter);
 
+//Set Product & User to Favorite 
+app.use('/favorite' , FavoriteRouter)
 app.listen(PORT , ()=> {
     console.log(`Welcome for the first time from port ${PORT}`)
     ConfigDB();

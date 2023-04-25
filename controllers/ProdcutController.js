@@ -90,12 +90,41 @@ let updateProdcut = (req , res) => {
     })
 
 }
+
+let ratingProduct = async (req , res) => {
+    let productId = req.params.id
+    const product = await ProductSchema.findById(productId)
+    let findUser = product.ratingUsers.find(user => user.userId.toString() === req.body.userId.toString())
+    if(findUser) {
+        return res.status(404).json({
+            "message" : "user already rated"
+        })
+    }
+    let totalRating = 0
+    product.ratingUsers.push({
+        userId : req.body.userId ,
+        rating : req.body.rating
+    })
+
+    product.ratingUsers.forEach(rate => {
+        totalRating += rate.rating
+    })
+    product.avgRating = totalRating / product.ratingUsers.length
+    await product.save()
+    
+    res.status(200).json({
+        "message" : "Rate added"
+    })
+
+}
+
 module.exports = {
     setNewProdcut ,
     getAllProducts ,
     getProductById ,
     deleteProduct , 
     searchItemByTitle ,
-    updateProdcut
+    updateProdcut ,
+    ratingProduct
 }
 

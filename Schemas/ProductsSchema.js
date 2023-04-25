@@ -64,7 +64,28 @@ let productSchema = new Schema({
     dateOfAnnouncment : {
         type : Date ,
         default : Date.now
-    }
+    } , 
+    avgRating : {
+        type : Schema.Types.Number ,
+        default : 0.0
+    } ,
+    ratingUsers : [{
+        userId : { 
+            type : mongoose.Schema.Types.ObjectId , 
+            ref : 'userId'  ,
+            required : true
+        } ,
+        rating : {
+            type : Number ,
+            min : 0 ,
+            max : 5 ,
+            require : true
+        } ,
+        createdAt: { 
+            type: Date , 
+            default: Date.now 
+        }
+    }]
 
 })
 
