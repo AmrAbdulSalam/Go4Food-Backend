@@ -4,7 +4,7 @@ const FavoriteController = require('../controllers/FavoriteController')
 
 
 
-router.get('/checkUser/:id' , FavoriteController.getUserList)
-router.post('/insertUser/:id' , FavoriteController.inserToFavorite)
+router.get('/checkUser/:mail' , FavoriteController.getUserList)
+router.post('/insertUser/:mail' , FavoriteController.inserToFavorite)
 
 module.exports = router

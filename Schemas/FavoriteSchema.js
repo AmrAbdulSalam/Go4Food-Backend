@@ -7,8 +7,8 @@ let favoriteSchema = new Schema({
         required : true
     } , 
 
-    userId : {
-        type : Schema.Types.ObjectId ,
+    email : {
+        type : String ,
         required : true
     }
 

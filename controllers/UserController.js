@@ -105,9 +105,12 @@ let checkCredentials = (req , res) => {
             let newUser = {
                 'email' : user.email ,
                 'id' : user._id ,
-                'country' : user.country
+                'country' : user.country ,
+                'firstname' : user.firstname ,
+                'lastname' : user.lastname ,
+                'phone' : user.phoneNumber
             }
-            let token = jwt.sign(newUser , process.env.SECRET_KEY , {expiresIn : "10s"})
+            let token = jwt.sign(newUser , process.env.SECRET_KEY , {expiresIn : "5m"})
             res.status(200).json(
                 {
                     "message" : "user found" , 

@@ -1,9 +1,9 @@
 let FavoriteSchema = require('../Schemas/FavoriteSchema')
 let getUserList = (req , res) => {
-    let userId = req.params.id
+    let email = req.params.mail
     FavoriteSchema.find(
         {
-            "userId" : userId
+            "email" : email
         }
     )
     .then(result => {
@@ -17,11 +17,16 @@ let getUserList = (req , res) => {
 let inserToFavorite = (req , res) => {
     insert = new FavoriteSchema (
         {
-            "userId" : req.params.id , 
+            "email" : req.params.mail , 
             "productId" : req.body.productId
         }
     )
     insert.save()
+    .then(result => {
+        res.json({
+            "message"  : 'item added to favorite'
+        })
+    })
 }
 
 module.exports = {
