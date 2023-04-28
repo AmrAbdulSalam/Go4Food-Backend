@@ -85,7 +85,10 @@ let productSchema = new Schema({
             type: Date , 
             default: Date.now 
         }
-    }]
+    }] ,
+    favoriteUsers : {
+        type : Array ,
+    }
 
 })
 
