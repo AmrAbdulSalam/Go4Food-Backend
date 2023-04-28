@@ -44,22 +44,23 @@ let inserToFavorite = async (req , res) => {
 let deleteFavorite = async (req, res) => {
     const product = await ProductsSchema.findById(req.body.productId)
     let userFav = product.favoriteUsers.find(user => user == req.params.email)
+    let deleteProdcutId ;
     if(userFav == req.params.email){
         product.favoriteUsers.pop(userFav)
         product.save();
-        FavoriteSchema.find(
+        FavoriteSchema.findOneAndDelete(
             {
                 email : req.params.email ,
                 productId : req.body.productId
             }
         )
         .then(result => {
-            FavoriteSchema.findByIdAndDelete(result[0]._id)
             res.status(200).json({
                 "message" : "item deleted"
             })
         })
         .catch()
+       
         
     }
     else{
