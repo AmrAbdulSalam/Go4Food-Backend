@@ -117,7 +117,17 @@ let ratingProduct = async (req , res) => {
     })
 
 }
-
+let updateProductBoxNumber = (req , res) => {
+    ProductSchema.findByIdAndUpdate(req.params.id ,{
+        boxNo : req.body.boxNo
+    })
+    .then(result => {
+        res.status(200).send(result)
+    })
+    .catch(err => {
+        res.status(404).send(err)
+    })
+}
 module.exports = {
     setNewProdcut ,
     getAllProducts ,
@@ -125,6 +135,7 @@ module.exports = {
     deleteProduct , 
     searchItemByTitle ,
     updateProdcut ,
-    ratingProduct
+    ratingProduct ,
+    updateProductBoxNumber
 }
 

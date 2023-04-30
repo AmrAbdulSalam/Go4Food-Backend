@@ -7,6 +7,7 @@ router.get('/getProdcuts' , ProdcutController.getAllProducts)
 router.post('/setRating/:id' ,ProdcutController.ratingProduct )
 router.get('/getProdcut/:title' , ProdcutController.searchItemByTitle)
 router.put('/updateProduct/:id' , ProdcutController.updateProdcut)
+router.put('/updateBoxNumber/:id' , ProdcutController.updateProductBoxNumber)
 router.delete('/delete/:id' , ProdcutController.deleteProduct)
 router.get('/:id' , ProdcutController.getProductById)
 

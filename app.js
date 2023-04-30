@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 const prodcutRouter = require('./routers/ProdcutRouter')
 const UserController = require('./routers/UserRouter')
 const FavoriteRouter = require('./routers/FavoriteRouter')
+const OrderRouter = require('./routers/OrderRouter')
 require("dotenv").config();
 const app = express()
 const PORT = 3333 
@@ -46,6 +47,8 @@ app.use('/prodcut',prodcutRouter);
 
 //Set Product & User to Favorite 
 app.use('/favorite' , FavoriteRouter)
+//Set a new Order
+app.use('/order' , OrderRouter)
 app.listen(PORT , ()=> {
     console.log(`Welcome for the first time from port ${PORT}`)
     ConfigDB();
