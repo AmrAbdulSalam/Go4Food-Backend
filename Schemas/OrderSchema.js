@@ -41,7 +41,25 @@ let orderSchema = new Schema({
     createAt : {
         type : Date ,
         default : Date.now
-    }
+    } ,
+    picture : {
+        url : {
+            type : String ,
+            required : true
+        },
+        picTitle : {
+            type : String ,
+            default : "no-name image"
+        } ,
+    } , 
+    resName : {
+        type : String ,
+        required : true
+    } ,
+    timeToCollect : {
+        type : String ,
+        required : true ,
+    },
 })
 
 const OrderSchema = moongose.model('order' , orderSchema)

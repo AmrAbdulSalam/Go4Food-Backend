@@ -11,6 +11,12 @@ let insertOrder = (req , res) => {
         randomNumberCode : req.body.randomNumberCode ,
         paymentType : req.body.paymentType ,
         userRate : req.body.userRate ,
+        resName : req.body.resName ,
+        picture : {
+            url : req.body.picture['url'],
+            title : req.body.picture['title'] 
+        } ,
+        timeToCollect : req.body.timeToCollect ,
     })
     orderSchema.save()
     .then(result => {
