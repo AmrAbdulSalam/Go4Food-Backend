@@ -70,8 +70,8 @@ let productSchema = new Schema({
         default : 0.0
     } ,
     ratingUsers : [{
-        userId : { 
-            type : mongoose.Schema.Types.ObjectId , 
+        userEmail : { 
+            type : String, 
             ref : 'userId'  ,
             required : true
         } ,
@@ -80,6 +80,10 @@ let productSchema = new Schema({
             min : 0 ,
             max : 5 ,
             require : true
+        } ,
+        randomNumberCode : {
+            type: String ,
+            required : true
         } ,
         createdAt: { 
             type: Date , 

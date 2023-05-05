@@ -94,16 +94,28 @@ let updateProdcut = (req , res) => {
 let ratingProduct = async (req , res) => {
     let productId = req.params.id
     const product = await ProductSchema.findById(productId)
-    let findUser = product.ratingUsers.find(user => user.userId.toString() === req.body.userId.toString())
+    let findUser = product.ratingUsers.find(
+        (user => user.userEmail.toString() === req.body.userEmail.toString())
+         && 
+        (user => user.randomNumberCode === req.body.randomNumberCode))
     if(findUser) {
+        //update user rate
+        product.ratingUsers.pop(findUser)
+        product.ratingUsers.push({
+            userEmail : req.body.userEmail ,
+            rating : req.body.rating ,
+            randomNumberCode : req.body.randomNumberCode
+        })
+        await product.save()
         return res.status(404).json({
-            "message" : "user already rated"
+            "message" : "User rate number updated !"
         })
     }
     let totalRating = 0
     product.ratingUsers.push({
-        userId : req.body.userId ,
-        rating : req.body.rating
+        userEmail : req.body.userEmail ,
+        rating : req.body.rating ,
+        randomNumberCode : req.body.randomNumberCode
     })
 
     product.ratingUsers.forEach(rate => {
