@@ -18,7 +18,7 @@ let productSchema = new Schema({
     } ,
     boxNo : {
         type : Number ,
-        min : 1 ,
+        min : 0 ,
         max : 5 ,
         default : 5 ,
         required : true

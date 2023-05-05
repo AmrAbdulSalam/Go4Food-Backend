@@ -99,16 +99,8 @@ let ratingProduct = async (req , res) => {
          && 
         (user => user.randomNumberCode === req.body.randomNumberCode))
     if(findUser) {
-        //update user rate
-        product.ratingUsers.pop(findUser)
-        product.ratingUsers.push({
-            userEmail : req.body.userEmail ,
-            rating : req.body.rating ,
-            randomNumberCode : req.body.randomNumberCode
-        })
-        await product.save()
         return res.status(404).json({
-            "message" : "User rate number updated !"
+            "message" : "Rate already found !"
         })
     }
     let totalRating = 0
