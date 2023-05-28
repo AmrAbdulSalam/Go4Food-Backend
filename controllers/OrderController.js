@@ -134,9 +134,20 @@ let getRecommendation = (req, res) => {
         })
 }
 
+let getOrdersForResturant = (req ,res) => {
+    console.log('teeest')
+    OrderSchema.find({
+        resName : req.body.resName
+    })
+    .then(data => {
+        res.json(data)
+    })
+}
+
 module.exports = {
     insertOrder,
     updateRate,
     getOrder,
-    getRecommendation
+    getRecommendation ,
+    getOrdersForResturant
 }

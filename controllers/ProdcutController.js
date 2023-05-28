@@ -1,4 +1,5 @@
 const ProductSchema = require('../Schemas/ProductsSchema')
+const UserSchema = require('../Schemas/UserSchema')
 
 let setNewProdcut = (req , res) => {
     prodcutSchema = new ProductSchema({
@@ -132,6 +133,49 @@ let updateProductBoxNumber = (req , res) => {
         res.status(404).send(err)
     })
 }
+let checkResturant = (req , res) => {
+    ProductSchema.findOne({
+        email : req.body.email ,
+        password : req.body.password
+    })
+    .then(data => {
+        if(data != null) {
+            res.json({
+                message : "userfound" , 
+                email : req.body.email ,
+                resName : data.resName
+            })
+        }
+        else {
+            UserSchema.findOne({
+                email : req.body.email ,
+                password : req.body.password
+            })
+            .then(data => {
+                if(data != null) {
+                    res.json({
+                        message : "admin" , 
+                        email : req.body.email ,
+                    })
+                }
+                else {
+                    res.json({
+                        message : "no user"
+                    })
+                }
+            })
+        }
+    })
+}
+
+let  getInfo = (req ,res) => {
+    ProductSchema.find({
+        email : req.body.email
+    })
+    .then(data => {
+        res.json(data)
+    })
+}
 module.exports = {
     setNewProdcut ,
     getAllProducts ,
@@ -140,6 +184,8 @@ module.exports = {
     searchItemByTitle ,
     updateProdcut ,
     ratingProduct ,
-    updateProductBoxNumber
+    updateProductBoxNumber ,
+    checkResturant ,
+    getInfo
 }
 

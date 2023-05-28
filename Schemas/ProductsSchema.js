@@ -3,13 +3,18 @@ let Schema = mongoose.Schema;
 
 
 let productSchema = new Schema({
+    email : {
+        type : String ,
+    },
+    password : {
+        type : String ,
+    },
     category : {
         type : String ,
-        required : true
     },
     title : {
         type : String ,
-        required : true
+        //required : true
     },
     //Resturant Name
     resName : {
@@ -49,12 +54,11 @@ let productSchema = new Schema({
     available : {
         type : Boolean ,
         default : true ,
-        required : true
     } ,
     picture : {
         url : {
             type : String ,
-            required : true
+            //required : true
         },
         picTitle : {
             type : String ,

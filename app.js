@@ -6,6 +6,10 @@ const prodcutRouter = require('./routers/ProdcutRouter')
 const UserController = require('./routers/UserRouter')
 const FavoriteRouter = require('./routers/FavoriteRouter')
 const OrderRouter = require('./routers/OrderRouter')
+const PendingRouter = require('./routers/PendingRouter')
+const StatisticsRouter = require('./routers/StatisticsRouter')
+
+const cors = require('cors');
 require("dotenv").config();
 const app = express()
 const PORT = 3333 
@@ -43,12 +47,17 @@ app.get('/testUser' , (req,res) =>{
 //Set New User
 app.use('/user' , UserController)
 //Set new product
-app.use('/prodcut',prodcutRouter);
+app.use('/prodcut',cors(),prodcutRouter);
 
 //Set Product & User to Favorite 
 app.use('/favorite' , FavoriteRouter)
 //Set a new Order
-app.use('/order' , OrderRouter)
+app.use('/order' ,cors(), OrderRouter)
+//Set a new pending request
+app.use('/pending' ,cors(), PendingRouter)
+
+//Stat
+app.use('/statistics' , cors() , StatisticsRouter)
 app.listen(PORT , ()=> {
     console.log(`Welcome for the first time from port ${PORT}`)
     ConfigDB();
