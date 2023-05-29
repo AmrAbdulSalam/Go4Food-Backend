@@ -7,6 +7,7 @@ const UserController = require('./routers/UserRouter')
 const FavoriteRouter = require('./routers/FavoriteRouter')
 const OrderRouter = require('./routers/OrderRouter')
 const PendingRouter = require('./routers/PendingRouter')
+const DonateRouter = require('./routers/DonateRouter')
 const StatisticsRouter = require('./routers/StatisticsRouter')
 
 const cors = require('cors');
@@ -55,6 +56,8 @@ app.use('/favorite' , FavoriteRouter)
 app.use('/order' ,cors(), OrderRouter)
 //Set a new pending request
 app.use('/pending' ,cors(), PendingRouter)
+//Donate from users to Resturants
+app.use('/donate' ,cors(), DonateRouter)
 
 //Stat
 app.use('/statistics' , cors() , StatisticsRouter)
