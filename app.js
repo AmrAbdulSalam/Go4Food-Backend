@@ -46,7 +46,7 @@ app.get('/testUser' , (req,res) =>{
 
 
 //Set New User
-app.use('/user' , UserController)
+app.use('/user' , cors(), UserController)
 //Set new product
 app.use('/prodcut',cors(),prodcutRouter);
 

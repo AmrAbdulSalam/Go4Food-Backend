@@ -28,6 +28,9 @@ let userSchema = new Schema({
         type : String ,
         required : true
     },
+    expoToken : {
+        type : String ,
+    },
     registerDate : {
         type : Date ,
         default : Date.now

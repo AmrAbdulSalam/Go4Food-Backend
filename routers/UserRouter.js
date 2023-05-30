@@ -5,6 +5,7 @@ const UserController = require('../controllers/UserController')
 
 router.get('/getAllUserInformation' ,UserController.getAllUserInformation)
 router.post('/newUser' , UserController.newUser)
+router.post('/expoToken' , UserController.addExpoTokenToUser)
 router.get('/getUser/:email' ,UserController.searchForUserByEmail)
 router.post('/Signin' , UserController.checkCredentials)
 router.get('/:id', UserController.searchForUserById)

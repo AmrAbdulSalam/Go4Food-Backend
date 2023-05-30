@@ -134,6 +134,19 @@ let checkCredentials = (req , res) => {
         console.log(err)
     })
 }
+
+let addExpoTokenToUser = (req , res) => {
+    UserSchema.findOneAndUpdate({
+        email : req.body.email
+    } , 
+    {
+        expoToken : req.body.expoToken
+    })
+    .then(result => {
+        res.json(result)
+    })
+    .catch(err => console.log(err))
+}
 module.exports = {
     getAllUserInformation ,
     newUser ,
@@ -141,6 +154,7 @@ module.exports = {
     searchForUserByEmail ,
     deleteUserById ,
     updateUser ,
-    checkCredentials
+    checkCredentials ,
+    addExpoTokenToUser
 
 }
