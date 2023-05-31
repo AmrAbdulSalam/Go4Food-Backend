@@ -8,6 +8,7 @@ let insertOrder = (req, res) => {
         totalPrice: req.body.totalPrice,
         price: req.body.price,
         quantity: req.body.quantity,
+        moneySaved : req.body.moneySaved,
         randomNumberCode: req.body.randomNumberCode,
         paymentType: req.body.paymentType,
         userRate: req.body.userRate,
@@ -144,10 +145,25 @@ let getOrdersForResturant = (req ,res) => {
     })
 }
 
+let getUserTotalMoneySaved = (req , res) => {
+    OrderSchema.find({
+        email : req.body.email
+    })
+    .then(result => {
+        let newArr = result.map(object => {
+            return object.moneySaved
+        })
+        let sum = newArr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        res.json(sum)
+    })
+    .catch(err => console.log(err))
+}
+
 module.exports = {
     insertOrder,
     updateRate,
     getOrder,
     getRecommendation ,
-    getOrdersForResturant
+    getOrdersForResturant ,
+    getUserTotalMoneySaved
 }

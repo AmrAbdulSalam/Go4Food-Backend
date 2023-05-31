@@ -56,6 +56,10 @@ let orderSchema = new Schema({
         type : String ,
         required : true
     } ,
+    moneySaved : {
+        type : Number ,
+        default : 0
+    } ,
     timeToCollect : {
         type : String ,
         required : true ,
