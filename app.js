@@ -16,6 +16,7 @@ const app = express()
 const PORT = 3333 
 
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 
 let ConfigDB = async () => {
     try{
@@ -58,7 +59,7 @@ app.use('/order' ,cors(), OrderRouter)
 app.use('/pending' ,cors(), PendingRouter)
 //Donate from users to Resturants
 app.use('/donate' ,cors(), DonateRouter)
-
+app.use('/profile' , express.static('uploads/images'))
 //Stat
 app.use('/statistics' , cors() , StatisticsRouter)
 app.listen(PORT , ()=> {
