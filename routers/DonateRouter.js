@@ -5,5 +5,6 @@ const DonateController = require('../controllers/DonateController')
 
 
 router.post('/setDonate' , DonateController.donateFromUser)
-router.get('/getDonate' , DonateController.getAllDonates)
+router.post('/getDonate' , DonateController.getAllDonates)
+router.post('/updatePay' , DonateController.updatePay)
 module.exports = router

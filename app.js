@@ -2,6 +2,7 @@ const express = require('express');
 const { default: mongoose, connect } = require('mongoose');
 let UserSchema = require('./Schemas/UserSchema')
 var bodyParser = require('body-parser');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const prodcutRouter = require('./routers/ProdcutRouter')
 const UserController = require('./routers/UserRouter')
 const FavoriteRouter = require('./routers/FavoriteRouter')
@@ -44,6 +45,30 @@ app.get('/testUser' , (req,res) =>{
 
 })
 
+let Notification = (req , res) => {
+      fetch('https://exp.host/--/api/v2/push/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(req.body),
+      })
+        .then(response => {
+          // Handle the response
+          if (response.ok) {
+            // Request was successful
+            console.log('Notification sent successfully!');
+          } else {
+            // Request failed
+            console.error('Failed to send notification:', response.statusText);
+          }
+        })
+        .catch(error => {
+          // Handle network errors
+          console.error('Error sending notification:', error);
+        });
+      
+}
 
 
 //Set New User
@@ -62,6 +87,7 @@ app.use('/donate' ,cors(), DonateRouter)
 app.use('/profile' , express.static('uploads/images'))
 //Stat
 app.use('/statistics' , cors() , StatisticsRouter)
+app.use('/notification' , cors() , Notification)
 app.listen(PORT , ()=> {
     console.log(`Welcome for the first time from port ${PORT}`)
     ConfigDB();
