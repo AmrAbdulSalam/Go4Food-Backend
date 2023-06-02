@@ -26,15 +26,22 @@ let userOrders = async () => {
             orders[name.resName] = 1
         }
     })
-    return orders
+    const transformedArray = [];
+
+    Object.keys(orders).forEach(key => {
+      const value = orders[key];
+      const transformedObject = { name: key, value: value };
+      transformedArray.push(transformedObject);
+    });
+    return transformedArray
 }
 
 let resturantRate = async () => {
     let data = await ProductsSchema.find()
     return data.map(object => {
         return {
-            resName: object.resName,
-            rate: object.avgRating.toFixed(1)
+            name : object.resName,
+            value : object.avgRating.toFixed(1)
         }
     })
 }
@@ -53,7 +60,13 @@ let resturantProfit = async () => {
     for (const key in orders) {
         orders[key] = orders[key].toFixed(2)
     }
-    return orders
+    const transformedArray = [];
+    Object.keys(orders).forEach(key => {
+        const value = orders[key];
+        const transformedObject = { name: key, value: value };
+        transformedArray.push(transformedObject);
+      });
+    return transformedArray
 }
 
 let userCount = async () => {
@@ -95,7 +108,15 @@ let categorysType = async () => {
             occurrences[value] = 1;
         }
     }
-    return occurrences 
+    const transformedArray = [];
+
+    Object.keys(occurrences).forEach(key => {
+      const value = occurrences[key];
+      const transformedObject = { name: key, value: value };
+      transformedArray.push(transformedObject);
+    });
+    
+    return transformedArray
 }
 
 let resturantWithTotalNumberOfDonatedBoxes = async () => {
@@ -109,7 +130,13 @@ let resturantWithTotalNumberOfDonatedBoxes = async () => {
             donates[name.resName] = name.quantity
         }
     })
-    return donates
+    const transformedArray = [];
+    Object.keys(donates).forEach(key => {
+        const value = donates[key];
+        const transformedObject = { name: key, value: value };
+        transformedArray.push(transformedObject);
+      });
+    return transformedArray
 }
 
 let productStat = async (req, res) => {
